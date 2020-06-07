@@ -17,10 +17,8 @@ import ru.volnenko.se.entity.Task;
 @Service
 public final class TaskService implements ITaskService {
 
-    @Resource
     private final ITaskRepository taskRepository;
 
-    @Resource
     private final IProjectRepository projectRepository;
 
     @Autowired

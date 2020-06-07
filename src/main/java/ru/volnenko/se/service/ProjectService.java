@@ -14,7 +14,6 @@ import ru.volnenko.se.entity.Project;
 @Service
 public final class ProjectService implements ru.volnenko.se.api.service.IProjectService {
 
-    @Resource
     private final IProjectRepository projectRepository;
 
     @Autowired

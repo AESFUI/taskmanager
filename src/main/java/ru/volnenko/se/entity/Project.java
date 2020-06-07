@@ -6,11 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.UUID;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Denis Volnenko
  */
 
+@Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class Project implements Serializable {
 

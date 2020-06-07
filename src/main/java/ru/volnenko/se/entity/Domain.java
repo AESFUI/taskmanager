@@ -4,11 +4,13 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
 /**
  * @author Denis Volnenko
  */
 
+@Component
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class Domain {
 

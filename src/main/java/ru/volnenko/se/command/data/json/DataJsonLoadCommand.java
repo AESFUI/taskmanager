@@ -1,6 +1,7 @@
 package ru.volnenko.se.command.data.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Domain;
@@ -11,6 +12,7 @@ import java.nio.file.Files;
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class DataJsonLoadCommand extends AbstractCommand {
 
     @Override

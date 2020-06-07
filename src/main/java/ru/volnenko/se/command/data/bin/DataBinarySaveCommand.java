@@ -1,5 +1,6 @@
 package ru.volnenko.se.command.data.bin;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Project;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class DataBinarySaveCommand extends AbstractCommand {
 
     @Override

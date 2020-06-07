@@ -1,11 +1,13 @@
 package ru.volnenko.se.command.project;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.entity.Project;
 
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class ProjectListCommand extends AbstractCommand {
 
     @Override

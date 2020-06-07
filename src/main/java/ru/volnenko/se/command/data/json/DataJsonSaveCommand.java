@@ -3,6 +3,7 @@ package ru.volnenko.se.command.data.json;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Domain;
@@ -13,6 +14,7 @@ import java.nio.file.Files;
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class DataJsonSaveCommand extends AbstractCommand {
 
     @Override

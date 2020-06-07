@@ -2,6 +2,7 @@ package ru.volnenko.se.command.data.xml;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Domain;
@@ -12,6 +13,7 @@ import java.nio.file.Files;
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class DataXmlLoadCommand extends AbstractCommand {
 
     @Override

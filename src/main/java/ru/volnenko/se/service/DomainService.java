@@ -1,5 +1,6 @@
 package ru.volnenko.se.service;
 
+import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.service.IDomainService;
 import ru.volnenko.se.api.service.ServiceLocator;
 import ru.volnenko.se.entity.Domain;
@@ -7,6 +8,7 @@ import ru.volnenko.se.entity.Domain;
 /**
  * @author Denis Volnenko
  */
+@Service
 public final class DomainService implements IDomainService {
 
     private final ServiceLocator serviceLocator;

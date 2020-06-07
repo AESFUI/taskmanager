@@ -1,12 +1,18 @@
 package ru.volnenko.se.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import org.springframework.stereotype.Component;
 import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.api.repository.ITaskRepository;
 import ru.volnenko.se.api.service.IDomainService;
 import ru.volnenko.se.api.service.IProjectService;
 import ru.volnenko.se.api.service.ITaskService;
 import ru.volnenko.se.api.service.ServiceLocator;
-import ru.volnenko.se.command.*;
+import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.error.CommandAbsentException;
 import ru.volnenko.se.error.CommandCorruptException;
 import ru.volnenko.se.repository.ProjectRepository;
@@ -15,11 +21,10 @@ import ru.volnenko.se.service.DomainService;
 import ru.volnenko.se.service.ProjectService;
 import ru.volnenko.se.service.TaskService;
 
-import java.util.*;
-
 /**
  * @author Denis Volnenko
  */
+@Component
 public final class Bootstrap implements ServiceLocator {
 
     private final ITaskRepository taskRepository = new TaskRepository();
@@ -65,20 +70,13 @@ public final class Bootstrap implements ServiceLocator {
         commands.put(cliCommand, command);
     }
 
-    public void registry(final Class... classes) throws InstantiationException, IllegalAccessException {
-        for (Class clazz: classes) registry(clazz);
+    public void registry(final List<AbstractCommand> commandList) {
+        for (AbstractCommand command : commandList) registry(command);
     }
 
-    public void registry(final Class clazz) throws IllegalAccessException, InstantiationException {
-        if (!AbstractCommand.class.isAssignableFrom(clazz)) return;
-        final Object command = clazz.newInstance();
-        final AbstractCommand abstractCommand = (AbstractCommand) command;
-        registry(abstractCommand);
-    }
-
-    public void init(final Class... classes) throws Exception {
-        if (classes == null || classes.length == 0) throw new CommandAbsentException();
-        registry(classes);
+    public void init(final List<AbstractCommand> commandList) throws Exception {
+        if (commandList == null || commandList.isEmpty()) throw new CommandAbsentException();
+        registry(commandList);
         start();
     }
 

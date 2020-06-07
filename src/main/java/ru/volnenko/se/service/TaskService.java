@@ -1,5 +1,9 @@
 package ru.volnenko.se.service;
 
+import java.util.Collection;
+import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.api.repository.ITaskRepository;
@@ -7,19 +11,19 @@ import ru.volnenko.se.api.service.ITaskService;
 import ru.volnenko.se.entity.Project;
 import ru.volnenko.se.entity.Task;
 
-import java.util.Collection;
-import java.util.List;
-
 /**
  * @author Denis Volnenko
  */
 @Service
 public final class TaskService implements ITaskService {
 
+    @Resource
     private final ITaskRepository taskRepository;
 
+    @Resource
     private final IProjectRepository projectRepository;
 
+    @Autowired
     public TaskService(
             final ITaskRepository taskRepository,
             final IProjectRepository projectRepository

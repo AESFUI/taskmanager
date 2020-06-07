@@ -1,13 +1,21 @@
 package ru.volnenko.se.command.project;
 
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
+import ru.volnenko.se.controller.Bootstrap;
+import ru.volnenko.se.service.ProjectService;
 
 /**
  * @author Denis Volnenko
  */
 @Component
 public final class ProjectCreateCommand extends AbstractCommand {
+
+    @Resource
+    private Bootstrap bootstrap;
+    @Resource
+    private ProjectService projectService;
 
     @Override
     public String description() {
@@ -24,7 +32,7 @@ public final class ProjectCreateCommand extends AbstractCommand {
         System.out.println("[PROJECT CREATE]");
         System.out.println("ENTER NAME:");
         final String name = bootstrap.nextLine();
-        bootstrap.getProjectRepository().createProject(name);
+        projectService.createProject(name);
         System.out.println("[OK]");
         System.out.println();
     }

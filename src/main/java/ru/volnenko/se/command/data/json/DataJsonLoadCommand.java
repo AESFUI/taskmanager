@@ -1,19 +1,23 @@
 package ru.volnenko.se.command.data.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.nio.file.Files;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Domain;
-
-import java.io.File;
-import java.nio.file.Files;
+import ru.volnenko.se.service.DomainService;
 
 /**
  * @author Denis Volnenko
  */
 @Component
 public final class DataJsonLoadCommand extends AbstractCommand {
+
+    @Resource
+    private DomainService domainService;
 
     @Override
     public String command() {
@@ -34,7 +38,7 @@ public final class DataJsonLoadCommand extends AbstractCommand {
         final String json = new String(bytes, "UTF-8");
         final ObjectMapper objectMapper = new ObjectMapper();
         final Domain domain = objectMapper.readValue(json, Domain.class);
-        bootstrap.getDomainService().load(domain);
+        domainService.load(domain);
         System.out.println("[OK]");
     }
 

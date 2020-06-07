@@ -2,6 +2,8 @@ package ru.volnenko.se.service;
 
 import java.util.Collection;
 import java.util.List;
+import javax.annotation.Resource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.volnenko.se.api.repository.IProjectRepository;
 import ru.volnenko.se.entity.Project;
@@ -12,8 +14,10 @@ import ru.volnenko.se.entity.Project;
 @Service
 public final class ProjectService implements ru.volnenko.se.api.service.IProjectService {
 
+    @Resource
     private final IProjectRepository projectRepository;
 
+    @Autowired
     public ProjectService(final IProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }

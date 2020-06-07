@@ -1,21 +1,28 @@
 package ru.volnenko.se.command.data.bin;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 import ru.volnenko.se.command.AbstractCommand;
 import ru.volnenko.se.constant.DataConstant;
 import ru.volnenko.se.entity.Project;
 import ru.volnenko.se.entity.Task;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import java.nio.file.Files;
+import ru.volnenko.se.service.ProjectService;
+import ru.volnenko.se.service.TaskService;
 
 /**
  * @author Denis Volnenko
  */
 @Component
 public final class DataBinarySaveCommand extends AbstractCommand {
+
+    @Resource
+    private ProjectService projectService;
+    @Resource
+    private TaskService taskService;
 
     @Override
     public String command() {
@@ -30,8 +37,8 @@ public final class DataBinarySaveCommand extends AbstractCommand {
     @Override
     public void execute() throws Exception {
         System.out.println("[DATA BINARY SAVE]");
-        final Project[] projects = bootstrap.getProjectService().getListProject().toArray(new Project[] {});
-        final Task[] tasks = bootstrap.getTaskService().getListTask().toArray(new Task[] {});
+        final Project[] projects = projectService.getListProject().toArray(new Project[] {});
+        final Task[] tasks = taskService.getListTask().toArray(new Task[] {});
 
         final File file = new File(DataConstant.FILE_BINARY);
         Files.deleteIfExists(file.toPath());
